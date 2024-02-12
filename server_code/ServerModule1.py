@@ -23,3 +23,12 @@ def create_media_object(content_type, file_data_base64, file_name):
     file_data = base64.b64decode(file_data_base64)
     media_object = anvil.media.BlobMedia(content_type, file_data, file_name)
     return media_object
+
+
+@anvil.server.callable
+def upload_file(path, data):
+    # Encode the binary data to Base64 string
+    data_base64 = base64.b64encode(data).decode('utf-8')
+    
+    # Add a new row to the datas table with the encoded data
+    app_tables.datas.add_row(id=1, name=path, data=data_base64)
