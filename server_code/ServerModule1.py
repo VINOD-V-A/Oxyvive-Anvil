@@ -6,6 +6,10 @@ import anvil.media
 import base64
 
 @anvil.server.callable
+def data(id,name,data):
+  app_tables.datas.add_row(id=id, name=name, data=data)
+  
+@anvil.server.callable
 def user(id,username,email,password,phone,pincode):
   app_tables.users.add_row(id=id, username=username, email=email, password=password,phone=phone,pincode=pincode)
   
